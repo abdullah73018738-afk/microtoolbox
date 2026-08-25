@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>MicroToolbox - Free Online SEO & Web Utility Tools</title>
+    <meta name="title" content="MicroToolbox - Free Online SEO & Web Utility Tools">
+    <meta name="description" content="Free client-side web tools: Multi-Platform Social Tag Generator, Word & Character Counter, and Code Minifier. Fast, private, and easy to use.">
+    <meta name="keywords" content="social tag generator, youtube tag generator, tiktok hashtag generator, word counter, character counter, code minifier, html minifier, css minifier, free web tools, microtoolbox">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="MicroToolbox">
+
+    <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://microtoolbox.pages.dev/">
+    <meta property="og:title" content="MicroToolbox - Free Online SEO & Web Utility Tools">
+    <meta property="og:description" content="Generate YouTube, TikTok & Instagram tags, count words/characters, and minify code instantly online.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="MicroToolbox - Free Online SEO & Web Utility Tools">
+    <meta property="twitter:description" content="Generate YouTube, TikTok & Instagram tags, count words/characters, and minify code instantly online.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Structured Data (Schema.org for Google Search) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "MicroToolbox",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "description": "A suite of web utilities including Social Tag Generator, Text Counter, and Code Minifier.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center p-3 sm:p-6">
+
+    <!-- Header -->
+    <header class="text-center my-4">
+        <h1 class="text-3xl sm:text-4xl font-bold text-cyan-400">MicroToolbox</h1>
+        <p class="text-gray-400 text-xs sm:text-sm mt-1">Fast, Private & Client-Side Web Tools</p>
+    </header>
+
+    <main class="w-full max-w-2xl">
+        <!-- Tool 1: Word & Character Counter -->
+        <section class="bg-gray-800 p-4 sm:p-5 rounded-xl shadow-lg border border-gray-700 mb-6">
+            <h2 class="text-lg sm:text-xl font-bold text-cyan-400 text-center mb-1">Word & Character Counter</h2>
+            <p class="text-gray-400 text-center mb-4 text-xs">Real-time text analysis & reading time calculator</p>
+
+            <textarea id="inputText" placeholder="Paste or type your text here..." 
+                class="w-full h-32 p-3 rounded-lg bg-gray-900 text-gray-100 border border-gray-700 focus:outline-none focus:border-cyan-500 resize-none text-xs sm:text-sm"></textarea>
+
+            <div class="grid grid-cols-3 gap-2 sm:gap-3 mt-4 text-center">
+                <div class="bg-gray-900 p-2 sm:p-3 rounded-lg border border-gray-700">
+                    <p class="text-[10px] sm:text-xs text-gray-400 uppercase">Words</p>
+                    <p id="wordCount" class="text-base sm:text-lg font-bold text-cyan-400">0</p>
+                </div>
+                <div class="bg-gray-900 p-2 sm:p-3 rounded-lg border border-gray-700">
+                    <p class="text-[10px] sm:text-xs text-gray-400 uppercase">Characters</p>
+                    <p id="charCount" class="text-base sm:text-lg font-bold text-green-400">0</p>
+                </div>
+                <div class="bg-gray-900 p-2 sm:p-3 rounded-lg border border-gray-700">
+                    <p class="text-[10px] sm:text-xs text-gray-400 uppercase">Reading Time</p>
+                    <p id="readingTime" class="text-base sm:text-lg font-bold text-yellow-400">0m</p>
+                </div>
+            </div>
+
+            <!-- SEO Content Section: Word Counter -->
+            <article class="mt-6 pt-4 border-t border-gray-700 text-xs text-gray-300 space-y-2">
+                <h3 class="font-bold text-cyan-300 text-sm">About Online Word & Character Counter</h3>
+                <p>
+                    This free online word counter tool helps writers, students, and SEO specialists measure text length accurately. Track total word count, character limit, and estimated reading time in real time without sending data to any external server.
+                </p>
+                <p><strong>Key Benefits:</strong> Ideal for social media character limits (X/Twitter, LinkedIn), blog post writing, essay submissions, and metadata character optimization.</p>
+            </article>
+        </section>
+
+        <!-- Tool 2: Code Minifier -->
+        <section class="bg-gray-800 p-4 sm:p-5 rounded-xl shadow-lg border border-gray-700 mb-6">
+            <h2 class="text-lg sm:text-xl font-bold text-cyan-400 text-center mb-1">Code Minifier</h2>
+            <p class="text-gray-400 text-center mb-4 text-xs">Compress HTML, CSS, and JS code instantly</p>
+
+            <textarea id="minifyInput" placeholder="Paste your HTML, CSS, or JS code here..." 
+                class="w-full h-32 p-3 rounded-lg bg-gray-900 text-gray-100 border border-gray-700 focus:outline-none focus:border-cyan-500 resize-none font-mono text-xs"></textarea>
+
+            <button id="minifyBtn" class="w-full mt-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 rounded-lg transition text-xs sm:text-sm">
+                Minify Code
+            </button>
+
+            <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                    <label class="text-[10px] sm:text-xs text-gray-400 uppercase font-semibold">Minified Output:</label>
+                    <button id="copyBtn" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none">
+                        Copy Code
+                    </button>
+                </div>
+                <textarea id="minifyOutput" readonly placeholder="Minified code will appear here..." 
+                    class="w-full h-28 p-3 rounded-lg bg-gray-900 text-green-400 border border-gray-700 focus:outline-none font-mono text-xs whitespace-pre-wrap break-all resize-none"></textarea>
+            </div>
+
+            <!-- SEO Content Section: Code Minifier -->
+            <article class="mt-6 pt-4 border-t border-gray-700 text-xs text-gray-300 space-y-2">
+                <h3 class="font-bold text-cyan-300 text-sm">Why Use an Online Code Minifier?</h3>
+                <p>
+                    Minification removes unnecessary spaces, newlines, and comments from web source code. Reducing file size improves page load speed, boosts Google Core Web Vitals score, and lowers bandwidth consumption for better technical SEO rankings.
+                </p>
+                <p><strong>Supported Formats:</strong> Client-side minification for HTML structures, CSS stylesheets, and JavaScript logic files.</p>
+            </article>
+        </section>
+
+        <!-- Tool 3: Social Tag Generator -->
+        <section class="bg-gray-800 p-4 sm:p-5 rounded-xl shadow-lg border border-gray-700 mb-6">
+            <h2 class="text-lg sm:text-xl font-bold text-cyan-400 text-center mb-1">Social Tag Generator</h2>
+            <p class="text-gray-400 text-center mb-4 text-xs">Generate Tags & Hashtags for YouTube, TikTok, Instagram & Facebook</p>
+
+            <div class="flex gap-2 relative">
+                <div class="relative w-full">
+                    <input type="text" id="tagInput" placeholder="Enter keyword (e.g. Telegram new game, pubg, tech)..." 
+                        class="w-full p-2.5 sm:p-3 pr-8 rounded-lg bg-gray-900 text-gray-100 border border-gray-700 focus:outline-none focus:border-cyan-500 text-xs sm:text-sm">
+                    <button id="clearInputBtn" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white font-bold text-sm">
+                        ✕
+                    </button>
+                </div>
+                <button id="generateTagsBtn" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-3 sm:px-4 rounded-lg transition text-xs sm:text-sm shrink-0">
+                    Generate
+                </button>
+            </div>
+
+            <!-- Section 1: Plain Tags -->
+            <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                    <label class="text-[10px] sm:text-xs text-gray-400 uppercase font-semibold">
+                        Generated Tags (Keywords) <span id="tagsCountBadge" class="text-cyan-400 font-bold ml-1">(0)</span>:
+                    </label>
+                    <button id="copyTagsBtn" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none">
+                        Copy Tags
+                    </button>
+                </div>
+                <textarea id="tagsOutput" readonly placeholder="SEO tags will appear here..." 
+                    class="w-full h-28 p-3 rounded-lg bg-gray-900 text-cyan-300 border border-gray-700 focus:outline-none font-mono text-xs whitespace-pre-wrap break-all resize-none"></textarea>
+            </div>
+
+            <!-- Section 2: Hashtags -->
+            <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                    <label class="text-[10px] sm:text-xs text-gray-400 uppercase font-semibold">
+                        Generated Hashtags (#) <span id="hashtagsCountBadge" class="text-green-400 font-bold ml-1">(0)</span>:
+                    </label>
+                    <button id="copyHashtagsBtn" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none">
+                        Copy Hashtags
+                    </button>
+                </div>
+                <textarea id="hashtagsOutput" readonly placeholder="Hashtags will appear here..." 
+                    class="w-full h-28 p-3 rounded-lg bg-gray-900 text-green-400 border border-gray-700 focus:outline-none font-mono text-xs whitespace-pre-wrap break-all resize-none"></textarea>
+            </div>
+
+            <!-- SEO Content Section: Social Tag Generator -->
+            <article class="mt-6 pt-4 border-t border-gray-700 text-xs text-gray-300 space-y-2">
+                <h3 class="font-bold text-cyan-300 text-sm">Best Multi-Platform Tag & Hashtag Generator</h3>
+                <p>
+                    Boost video reach and organic discovery across YouTube, TikTok, Instagram Reels, and Facebook. Our intelligent search suggestion algorithm finds high-volume keywords, long-tail tags, and viral hashtags to optimize your video metadata.
+                </p>
+                <p><strong>How It Works:</strong> Enter a target keyword to instantly receive comma-separated tags for YouTube Studio and hashtag blocks for social media descriptions.</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- Embedded JavaScript Logic -->
+    <script>
+        // Copy Helper
+        function copyToClipboard(textareaElement, btnElement, originalText) {
+            if (!textareaElement.value || textareaElement.value.includes("Please enter")) return;
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textareaElement.value).then(() => {
+                    showCopiedFeedback(btnElement, originalText);
+                }).catch(() => {
+                    fallbackCopy(textareaElement, btnElement, originalText);
+                });
+            } else {
+                fallbackCopy(textareaElement, btnElement, originalText);
+            }
+        }
+
+        function fallbackCopy(textareaElement, btnElement, originalText) {
+            textareaElement.select();
+            textareaElement.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                showCopiedFeedback(btnElement, originalText);
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+        }
+
+        function showCopiedFeedback(btnElement, originalText) {
+            btnElement.textContent = 'Copied!';
+            setTimeout(() => { btnElement.textContent = originalText; }, 2000);
+        }
+
+        // Tool 1: Text Counter Logic
+        const inputText = document.getElementById('inputText');
+        const wordCount = document.getElementById('wordCount');
+        const charCount = document.getElementById('charCount');
+        const readingTime = document.getElementById('readingTime');
+
+        inputText.addEventListener('input', () => {
+            const text = inputText.value;
+            charCount.textContent = text.length;
+
+            const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+            const numWords = words.length;
+            wordCount.textContent = numWords;
+
+            const minutes = Math.ceil(numWords / 200);
+            readingTime.textContent = numWords === 0 ? '0m' : `${minutes}m`;
+        });
+
+        // Tool 2: Minifier Logic
+        const minifyInput = document.getElementById('minifyInput');
+        const minifyBtn = document.getElementById('minifyBtn');
+        const minifyOutput = document.getElementById('minifyOutput');
+        const copyBtn = document.getElementById('copyBtn');
+
+        minifyBtn.addEventListener('click', () => {
+            let code = minifyInput.value;
+
+            if (!code.trim()) {
+                minifyOutput.value = '';
+                return;
+            }
+
+            let minified = code
+                .replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\//g, '')
+                .replace(/\s+/g, ' ')
+                .replace(/\s*([{}:;,=+\-*/<>])\s*/g, '$1')
+                .trim();
+
+            minifyOutput.value = minified;
+        });
+
+        copyBtn.addEventListener('click', () => {
+            copyToClipboard(minifyOutput, copyBtn, 'Copy Code');
+        });
+
+        // Tool 3: Social Tag Generator Logic
+        const tagInput = document.getElementById('tagInput');
+        const clearInputBtn = document.getElementById('clearInputBtn');
+        const generateTagsBtn = document.getElementById('generateTagsBtn');
+        const tagsOutput = document.getElementById('tagsOutput');
+        const hashtagsOutput = document.getElementById('hashtagsOutput');
+        const tagsCountBadge = document.getElementById('tagsCountBadge');
+        const hashtagsCountBadge = document.getElementById('hashtagsCountBadge');
+        const copyTagsBtn = document.getElementById('copyTagsBtn');
+        const copyHashtagsBtn = document.getElementById('copyHashtagsBtn');
+
+        tagInput.addEventListener('input', () => {
+            if (tagInput.value.length > 0) {
+                clearInputBtn.classList.remove('hidden');
+            } else {
+                clearInputBtn.classList.add('hidden');
+            }
+        });
+
+        clearInputBtn.addEventListener('click', () => {
+            tagInput.value = '';
+            clearInputBtn.classList.add('hidden');
+            tagInput.focus();
+        });
+
+        function fetchSingleQuery(q) {
+            return new Promise((resolve) => {
+                const cbName = 'yt_cb_' + Math.random().toString(36).substring(2, 9);
+                const script = document.createElement('script');
+                script.src = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=${encodeURIComponent(q)}&jsonp=${cbName}`;
+                
+                let isHandled = false;
+                const timer = setTimeout(() => {
+                    if (!isHandled) {
+                        isHandled = true;
+                        cleanup();
+                        resolve([]);
+                    }
+                }, 2000);
+
+                function cleanup() {
+                    delete window[cbName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                }
+
+                window[cbName] = function(data) {
+                    if (!isHandled) {
+                        isHandled = true;
+                        clearTimeout(timer);
+                        cleanup();
+                        if (data && data[1]) {
+                            resolve(data[1].map(i => i[0].toLowerCase()));
+                        } else {
+                            resolve([]);
+                        }
+                    }
+                };
+
+                script.onerror = function() {
+                    if (!isHandled) {
+                        isHandled = true;
+                        clearTimeout(timer);
+                        cleanup();
+                        resolve([]);
+                    }
+                };
+
+                document.body.appendChild(script);
+            });
+        }
+
+        function buildFallbackTags(baseQuery) {
+            const clean = baseQuery.trim().toLowerCase();
+            const words = clean.split(/\s+/).filter(Boolean);
+            const main = words.join(' ');
+            
+            const suffixes = [
+                'gameplay', 'update', 'bot', 'airdrop', 'guide', 
+                'review', '2026', 'new update', 'full guide', 
+                'how to play', 'unboxing', 'viral', 'shorts', 
+                'tricks', 'latest news', 'earnings', 'apk'
+            ];
+
+            let fallbacks = [clean];
+
+            if (words.length > 1) {
+                fallbacks.push(words.join(''));
+                fallbacks.push(words.reverse().join(' '));
+            }
+
+            suffixes.forEach(s => {
+                fallbacks.push(`${main} ${s}`);
+            });
+
+            return fallbacks;
+        }
+
+        generateTagsBtn.addEventListener('click', async () => {
+            let query = tagInput.value.trim();
+            if (!query) {
+                tagsOutput.value = "Please enter a keyword first!";
+                hashtagsOutput.value = "Please enter a keyword first!";
+                tagsCountBadge.textContent = "(0)";
+                hashtagsCountBadge.textContent = "(0)";
+                return;
+            }
+
+            generateTagsBtn.textContent = 'Fetching...';
+            generateTagsBtn.disabled = true;
+
+            const words = query.trim().toLowerCase().split(/\s+/);
+            const searchQueries = [
+                query.toLowerCase(),
+                `${query} gameplay`,
+                `${query} 2026`,
+                words.length > 1 ? words.slice(0, 2).join(' ') : query
+            ];
+
+            try {
+                const fetchPromises = searchQueries.map(q => fetchSingleQuery(q));
+                const resultsArray = await Promise.all(fetchPromises);
+                
+                let rawTags = [query.toLowerCase()];
+                resultsArray.forEach(arr => rawTags.push(...arr));
+
+                if (rawTags.length < 15) {
+                    rawTags.push(...buildFallbackTags(query));
+                }
+
+                let uniqueTags = [...new Set(rawTags.map(t => t.trim().toLowerCase()).filter(t => t.length > 1))];
+                uniqueTags = uniqueTags.slice(0, 22);
+
+                tagsOutput.value = uniqueTags.join(', ');
+                tagsCountBadge.textContent = `(${uniqueTags.length})`;
+
+                let hashtags = uniqueTags.map(term => {
+                    let cleanHash = term.replace(/[^a-z0-9]/gi, '');
+                    return cleanHash ? `#${cleanHash}` : '';
+                }).filter(h => h.length > 1);
+
+                const finalHashtags = [...new Set(hashtags)];
+                hashtagsOutput.value = finalHashtags.join(' ');
+                hashtagsCountBadge.textContent = `(${finalHashtags.length})`;
+
+            } catch (err) {
+                console.error(err);
+                let fallbacks = buildFallbackTags(query);
+                tagsOutput.value = fallbacks.join(', ');
+                tagsCountBadge.textContent = `(${fallbacks.length})`;
+
+                const hashes = fallbacks.map(t => `#${t.replace(/[^a-z0-9]/gi, '')}`);
+                hashtagsOutput.value = hashes.join(' ');
+                hashtagsCountBadge.textContent = `(${hashes.length})`;
+            } finally {
+                generateTagsBtn.textContent = 'Generate';
+                generateTagsBtn.disabled = false;
+            }
+        });
+
+        copyTagsBtn.addEventListener('click', () => {
+            copyToClipboard(tagsOutput, copyTagsBtn, 'Copy Tags');
+        });
+
+        copyHashtagsBtn.addEventListener('click', () => {
+            copyToClipboard(hashtagsOutput, copyHashtagsBtn, 'Copy Hashtags');
+        });
+    </script>
+</body>
+</html>
