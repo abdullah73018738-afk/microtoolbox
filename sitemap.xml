@@ -2,8 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://abdullah73018738-afk.github.io/microtoolbox/</loc>
-    <lastmod>2026-09-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://abdullah73018738-afk.github.io/microtoolbox/word-counter.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://abdullah73018738-afk.github.io/microtoolbox/code-minifier.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://abdullah73018738-afk.github.io/microtoolbox/tag-generator.html</loc>
+    <priority>0.80</priority>
   </url>
 </urlset>
