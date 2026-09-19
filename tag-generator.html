@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://abdullah73018738-afk.github.io/microtoolbox/tag-generator.html" />
+    <title>Multi-Platform Social Tag Generator - MicroToolbox</title>
+    <meta name="description" content="Generate viral tags and hashtags for YouTube, TikTok, Instagram, and Facebook automatically. Free and fast SEO tool.">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center p-3 sm:p-6">
+
+    <!-- Header with Back Link -->
+    <header class="w-full max-w-2xl flex justify-between items-center my-4">
+        <a href="index.html" class="text-cyan-400 font-bold hover:underline">← Back to MicroToolbox</a>
+        <span class="text-xs text-gray-400">Social Tag Generator</span>
+    </header>
+
+    <main class="w-full max-w-2xl">
+        <section class="bg-gray-800 p-4 sm:p-5 rounded-xl shadow-lg border border-gray-700 mb-6">
+            <h1 class="text-xl sm:text-2xl font-bold text-cyan-400 text-center mb-1">Social Tag Generator</h1>
+            <p class="text-gray-400 text-center mb-4 text-xs">Generate Tags & Hashtags for YouTube, TikTok, Instagram & Facebook</p>
+
+            <div class="flex gap-2 relative">
+                <div class="relative w-full">
+                    <input type="text" id="tagInput" placeholder="Enter keyword (e.g. pubg, gaming, tech)..." 
+                        class="w-full p-2.5 sm:p-3 pr-8 rounded-lg bg-gray-900 text-gray-100 border border-gray-700 focus:outline-none focus:border-cyan-500 text-xs sm:text-sm">
+                    <button id="clearInputBtn" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white font-bold text-sm">
+                        ✕
+                    </button>
+                </div>
+                <button id="generateTagsBtn" class="bg-cyan-600 hover:bg-cyan-500 text-white font-bold px-3 sm:px-4 rounded-lg transition text-xs sm:text-sm shrink-0">
+                    Generate
+                </button>
+            </div>
+
+            <!-- Tags Output -->
+            <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                    <label class="text-[10px] sm:text-xs text-gray-400 uppercase font-semibold">
+                        Generated Tags <span id="tagsCountBadge" class="text-cyan-400 font-bold ml-1">(0)</span>:
+                    </label>
+                    <button id="copyTagsBtn" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none">
+                        Copy Tags
+                    </button>
+                </div>
+                <textarea id="tagsOutput" readonly placeholder="SEO tags will appear here..." 
+                    class="w-full h-28 p-3 rounded-lg bg-gray-900 text-cyan-300 border border-gray-700 focus:outline-none font-mono text-xs whitespace-pre-wrap break-all resize-none"></textarea>
+            </div>
+
+            <!-- Hashtags Output -->
+            <div class="mt-4">
+                <div class="flex justify-between items-center mb-1">
+                    <label class="text-[10px] sm:text-xs text-gray-400 uppercase font-semibold">
+                        Generated Hashtags <span id="hashtagsCountBadge" class="text-green-400 font-bold ml-1">(0)</span>:
+                    </label>
+                    <button id="copyHashtagsBtn" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold focus:outline-none">
+                        Copy Hashtags
+                    </button>
+                </div>
+                <textarea id="hashtagsOutput" readonly placeholder="Hashtags will appear here..." 
+                    class="w-full h-28 p-3 rounded-lg bg-gray-900 text-green-400 border border-gray-700 focus:outline-none font-mono text-xs whitespace-pre-wrap break-all resize-none"></textarea>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const tagInput = document.getElementById('tagInput');
+        const clearInputBtn = document.getElementById('clearInputBtn');
+        const generateTagsBtn = document.getElementById('generateTagsBtn');
+        const tagsOutput = document.getElementById('tagsOutput');
+        const hashtagsOutput = document.getElementById('hashtagsOutput');
+        const tagsCountBadge = document.getElementById('tagsCountBadge');
+        const hashtagsCountBadge = document.getElementById('hashtagsCountBadge');
+        const copyTagsBtn = document.getElementById('copyTagsBtn');
+        const copyHashtagsBtn = document.getElementById('copyHashtagsBtn');
+
+        tagInput.addEventListener('input', () => {
+            clearInputBtn.classList.toggle('hidden', tagInput.value.length === 0);
+        });
+
+        clearInputBtn.addEventListener('click', () => {
+            tagInput.value = '';
+            clearInputBtn.classList.add('hidden');
+            tagInput.focus();
+        });
+
+        function copyToClipboard(textarea, btn, defaultText) {
+            if (!textarea.value || textarea.value.startsWith('Please')) return;
+            navigator.clipboard.writeText(textarea.value).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = defaultText; }, 2000);
+            });
+        }
+
+        function fetchSingleQuery(q) {
+            return new Promise((resolve) => {
+                const cbName = 'yt_cb_' + Math.random().toString(36).substring(2, 9);
+                const script = document.createElement('script');
+                script.src = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=${encodeURIComponent(q)}&jsonp=${cbName}`;
+                let isHandled = false;
+
+                const timer = setTimeout(() => {
+                    if (!isHandled) { isHandled = true; cleanup(); resolve([]); }
+                }, 2000);
+
+                function cleanup() {
+                    delete window[cbName];
+                    if (script.parentNode) script.parentNode.removeChild(script);
+                }
+
+                window[cbName] = function(data) {
+                    if (!isHandled) {
+                        isHandled = true;
+                        clearTimeout(timer);
+                        cleanup();
+                        resolve(data && data[1] ? data[1].map(i => i[0].toLowerCase()) : []);
+                    }
+                };
+
+                script.onerror = function() {
+                    if (!isHandled) { isHandled = true; clearTimeout(timer); cleanup(); resolve([]); }
+                };
+
+                document.body.appendChild(script);
+            });
+        }
+
+        function buildFallbackTags(baseQuery) {
+            const clean = baseQuery.trim().toLowerCase();
+            const words = clean.split(/\s+/).filter(Boolean);
+            const main = words.join(' ');
+            const suffixes = ['gameplay', 'update', 'guide', 'review', '2026', 'new update', 'viral', 'shorts', 'tricks'];
+            let fallbacks = [clean];
+            suffixes.forEach(s => fallbacks.push(`${main} ${s}`));
+            return fallbacks;
+        }
+
+        generateTagsBtn.addEventListener('click', async () => {
+            let query = tagInput.value.trim();
+            if (!query) {
+                tagsOutput.value = "Please enter a keyword first!";
+                hashtagsOutput.value = "Please enter a keyword first!";
+                tagsCountBadge.textContent = "(0)";
+                hashtagsCountBadge.textContent = "(0)";
+                return;
+            }
+
+            generateTagsBtn.textContent = 'Fetching...';
+            generateTagsBtn.disabled = true;
+
+            try {
+                const searchQueries = [query.toLowerCase(), `${query} gameplay`, `${query} 2026`];
+                const resultsArray = await Promise.all(searchQueries.map(q => fetchSingleQuery(q)));
+                
+                let rawTags = [query.toLowerCase()];
+                resultsArray.forEach(arr => rawTags.push(...arr));
+
+                if (rawTags.length < 10) rawTags.push(...buildFallbackTags(query));
+
+                let uniqueTags = [...new Set(rawTags.map(t => t.trim().toLowerCase()).filter(t => t.length > 1))].slice(0, 20);
+
+                tagsOutput.value = uniqueTags.join(', ');
+                tagsCountBadge.textContent = `(${uniqueTags.length})`;
+
+                let hashtags = uniqueTags.map(term => `#${term.replace(/[^a-z0-9]/gi, '')}`).filter(h => h.length > 1);
+                const finalHashtags = [...new Set(hashtags)];
+                hashtagsOutput.value = finalHashtags.join(' ');
+                hashtagsCountBadge.textContent = `(${finalHashtags.length})`;
+
+            } catch (err) {
+                let fallbacks = buildFallbackTags(query);
+                tagsOutput.value = fallbacks.join(', ');
+                tagsCountBadge.textContent = `(${fallbacks.length})`;
+                hashtagsOutput.value = fallbacks.map(t => `#${t.replace(/[^a-z0-9]/gi, '')}`).join(' ');
+                hashtagsCountBadge.textContent = `(${fallbacks.length})`;
+            } finally {
+                generateTagsBtn.textContent = 'Generate';
+                generateTagsBtn.disabled = false;
+            }
+        });
+
+        copyTagsBtn.addEventListener('click', () => copyToClipboard(tagsOutput, copyTagsBtn, 'Copy Tags'));
+        copyHashtagsBtn.addEventListener('click', () => copyToClipboard(hashtagsOutput, copyHashtagsBtn, 'Copy Hashtags'));
+    </script>
+</body>
+</html>
