@@ -1,44 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Free HTML, CSS & JS Code Minifier Online - MicroToolbox</title>
+    <meta name="title" content="Free HTML, CSS & JS Code Minifier Online - MicroToolbox">
+    <meta name="description" content="Compress and optimize your HTML, CSS, and JavaScript source code instantly. Improve Google Core Web Vitals and website page loading speed with our free code minifier.">
+    <meta name="keywords" content="code minifier, html minifier, css minifier, js minifier, javascript minifier, compress html online, minify code, web performance optimization">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="MicroToolbox">
+    
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://abdullah73018738-afk.github.io/microtoolbox/code-minifier.html" />
-    <title>Free HTML, CSS, JS Code Minifier - MicroToolbox</title>
-    <meta name="description" content="Compress your web code instantly with our free online HTML, CSS, and JavaScript Code Minifier.">
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center p-3 sm:p-6">
 
-    <header class="w-full max-w-2xl flex justify-between items-center my-4">
-        <a href="index.html" class="text-cyan-400 font-bold hover:underline">← Back to MicroToolbox</a>
-        <span class="text-xs text-gray-400">Code Minifier</span>
+    <!-- Open Graph / Social Share -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abdullah73018738-afk.github.io/microtoolbox/code-minifier.html">
+    <meta property="og:title" content="Free HTML, CSS & JS Code Minifier Online - MicroToolbox">
+    <meta property="og:description" content="Minify and compress HTML, CSS, and JavaScript code online to boost your website speed and performance.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&h=630&q=80">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Code Minifier",
+      "url": "https://abdullah73018738-afk.github.io/microtoolbox/code-minifier.html",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "description": "Fast client-side HTML, CSS, and JavaScript code minification tool.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- Tailwind CSS & Lucide Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="w-full border-b border-slate-800/80 backdrop-blur-md sticky top-0 z-50 bg-slate-950/80">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="arrow-left" class="w-4 h-4 text-white"></i>
+                </div>
+                <span class="text-sm font-semibold text-slate-300 group-hover:text-white transition-colors">Back to MicroToolbox</span>
+            </a>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                Code Minifier
+            </span>
+        </div>
     </header>
 
-    <main class="w-full max-w-2xl">
-        <section class="bg-gray-800 p-4 sm:p-5 rounded-xl shadow-lg border border-gray-700 mb-6">
-            <h1 class="text-xl sm:text-2xl font-bold text-cyan-400 text-center mb-1">Code Minifier</h1>
-            <p class="text-gray-400 text-center mb-4 text-xs">Compress HTML, CSS, and JS code instantly</p>
+    <!-- Main Tool Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl sm:text-4xl font-black text-white mb-2">Code Minifier</h1>
+            <p class="text-slate-400 text-xs sm:text-sm">Compress HTML, CSS, and JS code instantly to boost page speed.</p>
+        </div>
 
-            <textarea id="minifyInput" placeholder="Paste your code here..." 
-                class="w-full h-36 p-3 rounded-lg bg-gray-900 text-gray-100 border border-gray-700 focus:outline-none focus:border-cyan-500 font-mono text-xs"></textarea>
+        <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-sm space-y-4">
+            <div>
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">Source Code Input:</label>
+                <textarea id="minifyInput" rows="6" placeholder="Paste HTML, CSS, or JavaScript here..." 
+                    class="w-full p-4 rounded-xl bg-slate-950 text-slate-100 border border-slate-800 focus:outline-none focus:border-cyan-500/50 font-mono text-xs transition resize-none"></textarea>
+            </div>
 
-            <button id="minifyBtn" class="w-full mt-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2 rounded-lg transition text-xs sm:text-sm">
+            <button id="minifyBtn" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-cyan-500/20 text-xs sm:text-sm">
                 Minify Code
             </button>
 
-            <div class="mt-4">
-                <div class="flex justify-between items-center mb-1">
-                    <label class="text-xs text-gray-400 font-semibold">MINIFIED OUTPUT:</label>
-                    <button id="copyBtn" class="text-xs text-cyan-400 font-semibold">Copy Code</button>
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Minified Output:</label>
+                    <button id="copyBtn" class="text-xs text-cyan-400 hover:text-cyan-300 font-medium flex items-center gap-1">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                        <span>Copy Code</span>
+                    </button>
                 </div>
-                <textarea id="minifyOutput" readonly placeholder="Minified code will appear here..." 
-                    class="w-full h-28 p-3 rounded-lg bg-gray-900 text-green-400 border border-gray-700 font-mono text-xs whitespace-pre-wrap break-all resize-none"></textarea>
+                <textarea id="minifyOutput" readonly rows="6" placeholder="Compressed result will appear here..." 
+                    class="w-full p-4 rounded-xl bg-slate-950 text-emerald-400 border border-slate-800 font-mono text-xs focus:outline-none resize-none whitespace-pre-wrap break-all"></textarea>
             </div>
-        </section>
+        </div>
+
+        <!-- SEO Article Footer -->
+        <article class="mt-12 p-6 rounded-2xl bg-slate-900/30 border border-slate-800/50 text-xs text-slate-400 leading-relaxed space-y-3">
+            <h2 class="text-sm font-bold text-slate-200">Why Use an Online Code Minifier?</h2>
+            <p>Minification removes unnecessary spaces, line breaks, and comments from source code. Reducing file sizes speeds up page rendering and optimizes Google Core Web Vitals for higher SEO rankings.</p>
+        </article>
     </main>
 
+    <footer class="w-full border-t border-slate-800/80 bg-slate-950 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 MicroToolbox. Fast & Secure Online Utilities.</p>
+    </footer>
+
     <script>
+        lucide.createIcons();
         const minifyInput = document.getElementById('minifyInput');
         const minifyBtn = document.getElementById('minifyBtn');
         const minifyOutput = document.getElementById('minifyOutput');
@@ -46,15 +117,21 @@
 
         minifyBtn.addEventListener('click', () => {
             let code = minifyInput.value;
-            if (!code.trim()) return;
-            let minified = code.replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\//g, '').replace(/\s+/g, ' ').replace(/\s*([{}:;,=+\-*/<>])\s*/g, '$1').trim();
+            if (!code.trim()) { minifyOutput.value = ''; return; }
+            let minified = code
+                .replace(/\/\*[\s\S]*?\*\/|([^:]|^)\/\//g, '')
+                .replace(/\s+/g, ' ')
+                .replace(/\s*([{}:;,=+\-*/<>])\s*/g, '$1')
+                .trim();
             minifyOutput.value = minified;
         });
 
         copyBtn.addEventListener('click', () => {
+            if (!minifyOutput.value) return;
             navigator.clipboard.writeText(minifyOutput.value);
-            copyBtn.textContent = 'Copied!';
-            setTimeout(() => { copyBtn.textContent = 'Copy Code'; }, 2000);
+            const span = copyBtn.querySelector('span');
+            span.textContent = 'Copied!';
+            setTimeout(() => { span.textContent = 'Copy Code'; }, 2000);
         });
     </script>
 </body>
