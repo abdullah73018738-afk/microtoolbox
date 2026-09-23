@@ -40,6 +40,12 @@ class MicroToolboxApp {
     this.btnFormatJson = document.getElementById('btn-format-json');
     this.btnMinifyJson = document.getElementById('btn-minify-json');
 
+    // Tag Generator Elements
+    this.btnGenTags = document.getElementById('btn-gen-tags');
+    this.tagTopic = document.getElementById('tag-topic');
+    this.tagOutput = document.getElementById('tag-output');
+    this.btnCopyTags = document.getElementById('btn-copy-tags');
+
     // Toast Container
     this.toastContainer = document.getElementById('toast-container');
   }
@@ -75,9 +81,21 @@ class MicroToolboxApp {
     this.btnFormatJson.addEventListener('click', () => this.handleJSON(2));
     this.btnMinifyJson.addEventListener('click', () => this.handleJSON(0));
 
-    // Async Clipboard Operations
+    // Tag Generator Action
+    this.btnGenTags.addEventListener('click', async () => {
+      const topic = this.tagTopic.value;
+      if (!topic.trim()) return this.showToast('Please enter a topic', 'error');
+      const result = await this.executeWorkerTask('GENERATE_TAGS', { topic });
+      this.tagOutput.value = result;
+      this.showToast('Tags generated!', 'success');
+    });
+
+    // Clipboard Actions
     this.btnCopyMinify.addEventListener('click', () => {
       this.copyToClipboard(this.minifyOutput.value);
+    });
+    this.btnCopyTags.addEventListener('click', () => {
+      this.copyToClipboard(this.tagOutput.value);
     });
   }
 
@@ -93,7 +111,6 @@ class MicroToolboxApp {
     };
   }
 
-  // Worker Execution Promise Wrapper
   executeWorkerTask(action, payload) {
     return new Promise((resolve, reject) => {
       const id = ++this.msgIdCounter;
@@ -169,7 +186,6 @@ class MicroToolboxApp {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(text);
       } else {
-        // Fallback for older browsers / Non-HTTPS environments
         const textArea = document.createElement('textarea');
         textArea.value = text;
         textArea.style.position = 'fixed';
@@ -211,7 +227,6 @@ class MicroToolboxApp {
   }
 }
 
-// Bootstrap Application
 document.addEventListener('DOMContentLoaded', () => {
   window.app = new MicroToolboxApp();
 });
