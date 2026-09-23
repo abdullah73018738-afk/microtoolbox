@@ -1,5 +1,5 @@
 /**
- * Web Worker for AST-Based Transformation & High-Volume Text Calculations
+ * Web Worker for AST-Based Transformation, Text Calculations & Tag Generation
  */
 
 // Basic AST-style Lexer/Tokenizer for JavaScript Code Transformation
@@ -93,17 +93,17 @@ function minifyJS(code) {
 
 function minifyCSS(code) {
   return code
-    .replace(/\/\*[\s\S]*?\*\//g, '') // Strip comments safely
-    .replace(/\s*([\{\}\:\;\,])\s*/g, '$1') // Strip spaces around structural symbols
-    .replace(/\s+/g, ' ') // Collapse multiple spaces
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\s*([\{\}\:\;\,])\s*/g, '$1')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
 function minifyHTML(code) {
   return code
-    .replace(/<!--[\s\S]*?-->/g, '') // Remove HTML comments
-    .replace(/>\s+</g, '><') // Collapse spaces between tags
-    .replace(/\s+/g, ' ') // Normalize spaces
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/>\s+</g, '><')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
@@ -114,11 +114,8 @@ function analyzeText(text) {
 
   const chars = text.length;
   const lines = text.split('\n').length;
-  // Word extraction using non-blocking Unicode Regex matching
   const wordsArray = text.trim().match(/[\w\u00C0-\u024F]+/g);
   const words = wordsArray ? wordsArray.length : 0;
-  
-  // Average reading speed: ~200 WPM
   const readTimeMinutes = Math.ceil(words / 200);
 
   return {
@@ -130,8 +127,30 @@ function analyzeText(text) {
 }
 
 function parseAndFormatJSON(jsonString, indent = 2) {
-  const parsed = JSON.parse(jsonString); // Will throw native error if invalid
+  const parsed = JSON.parse(jsonString);
   return JSON.stringify(parsed, null, indent);
+}
+
+function generateTags(topic) {
+  if (!topic) return '';
+  const words = topic.split(/[\s,]+/);
+  const baseTags = words.map(w => w.trim().toLowerCase()).filter(Boolean);
+  
+  const extensions = ['viral', 'trending', '2026', 'guide', 'tips', 'best', 'official', 'tutorial'];
+  const allTags = new Set([...baseTags]);
+
+  baseTags.forEach(tag => {
+    extensions.forEach(ext => {
+      allTags.add(`${tag} ${ext}`);
+      allTags.add(`${tag}${ext}`);
+    });
+  });
+
+  const tagList = Array.from(allTags);
+  const commaSeparated = tagList.join(', ');
+  const hashtags = tagList.map(t => `#${t.replace(/\s+/g, '')}`).join(' ');
+
+  return `=== SEO Tags (Comma Separated) ===\n${commaSeparated}\n\n=== Social Hashtags ===\n${hashtags}`;
 }
 
 // Worker Communication Handler
@@ -153,6 +172,10 @@ self.onmessage = function (e) {
 
       case 'FORMAT_JSON':
         result = parseAndFormatJSON(payload.json, payload.indent);
+        break;
+
+      case 'GENERATE_TAGS':
+        result = generateTags(payload.topic);
         break;
 
       default:
