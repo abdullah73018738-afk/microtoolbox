@@ -20,6 +20,7 @@
       <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-minifier" id="tab-minifier">Code Minifier</button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-analyzer" id="tab-analyzer">Text Analyzer</button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-json" id="tab-json">JSON Formatter</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-tags" id="tab-tags">Tag Generator</button>
     </nav>
 
     <!-- Code Minifier Panel -->
@@ -95,6 +96,24 @@
           <label for="json-output">Processed JSON</label>
           <textarea id="json-output" readonly placeholder="Formatted output..." spellcheck="false"></textarea>
         </div>
+      </div>
+    </section>
+
+    <!-- Tag Generator Panel -->
+    <section id="panel-tags" class="panel" role="tabpanel" aria-labelledby="tab-tags">
+      <div class="controls">
+        <label for="tag-topic">Topic / Keywords:</label>
+        <input type="text" id="tag-topic" placeholder="e.g. Web Development, Gaming, SEO" style="flex:1; padding: 0.6rem; border-radius: var(--border-radius); border: 1px solid var(--bg-tertiary); background: var(--bg-secondary); color: white;">
+        <button id="btn-gen-tags" class="btn">Generate Tags</button>
+      </div>
+      <div class="workspace" style="grid-template-columns: 1fr; margin-top: 1rem;">
+        <div class="editor-container">
+          <label for="tag-output">Generated Tags & Hashtags</label>
+          <textarea id="tag-output" readonly placeholder="Your tags will appear here..." spellcheck="false"></textarea>
+        </div>
+      </div>
+      <div class="controls" style="margin-top: 1rem;">
+        <button id="btn-copy-tags" class="btn btn-secondary">Copy Tags</button>
       </div>
     </section>
   </main>
